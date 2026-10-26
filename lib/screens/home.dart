@@ -17,9 +17,9 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            StyledText(text: 'Styled text...'),
-            StyledHeading(text: 'Styled heading...'),
-            StyledTitle(text: 'Styled title...'),
+            StyledText(text: 'Character List'),
+            StyledHeading(text: 'CHARACTER LIST'),
+            StyledTitle(text: 'CHARACTER LIST'),
             FilledButton(onPressed: () {}, child: const Text('Create New')),
           ],
         ),
