@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/shared/styled_text.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,15 +17,9 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text('Character List'),
-            Text(
-              'Character List',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Text(
-              'Character List',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            StyledText(text: 'Styled text...'),
+            StyledHeading(text: 'Styled heading...'),
+            StyledTitle(text: 'Styled title...'),
             FilledButton(onPressed: () {}, child: const Text('Create New')),
           ],
         ),
