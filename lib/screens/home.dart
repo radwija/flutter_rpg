@@ -10,19 +10,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List characters = ['Zilong', 'Dyroth', 'Ling', 'Alpha', 'Miya'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Your Characters'), centerTitle: true),
+      appBar: AppBar(
+        title: const StyledTitle(text: 'Your Characters'),
+        centerTitle: true,
+      ),
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            StyledText(text: 'Text...'),
-            StyledHeading(text: 'Heading'),
-            StyledTitle(text: 'Title'),
+            Expanded(
+              child: ListView.builder(
+                itemCount: characters.length,
+                itemBuilder: (_, index) {
+                  return Container(
+                    color: Colors.grey[800],
+                    padding: const EdgeInsets.all(40),
+                    margin: const EdgeInsets.only(bottom: 40),
+                    child: Text(characters[index]),
+                  );
+                },
+              ),
+            ),
             StyledButton(
-              onPressed: () {},
+              onPressed: () {
+                print('button pressed');
+              },
               child: const StyledHeading(text: 'Create New'),
             ),
           ],
