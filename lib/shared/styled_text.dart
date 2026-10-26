@@ -25,7 +25,7 @@ class StyledHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text.toUpperCase(),
       style: GoogleFonts.kanit(
         textStyle: Theme.of(context).textTheme.headlineMedium,
       ),
@@ -41,7 +41,7 @@ class StyledTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text.toUpperCase(),
       style: GoogleFonts.kanit(
         textStyle: Theme.of(context).textTheme.titleMedium,
       ),
