@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 import 'package:flutter_rpg/screens/create/vocation_card.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 class Create extends StatefulWidget {
   const Create({super.key});
@@ -43,8 +47,14 @@ class _CreateState extends State<Create> {
       return;
     }
 
-    print(_nameController.text);
-    print(_sloganController.text);
+    characters.add(
+      Character(
+        id: uuid.v4(),
+        name: _nameController.text,
+        vocation: selectedVocation,
+        slogan: _sloganController.text,
+      ),
+    );
   }
 
   @override
