@@ -24,8 +24,8 @@ class CharacterCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                StyledHeading(text: character.name),
-                StyledText(text: character.vocation.title),
+                StyledHeading(character.name),
+                StyledText(character.vocation.title),
               ],
             ),
 
