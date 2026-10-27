@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
+import 'package:flutter_rpg/theme.dart';
 
 class VocationCard extends StatelessWidget {
   const VocationCard({
@@ -21,27 +22,31 @@ class VocationCard extends StatelessWidget {
         onTap(vocation);
       },
       child: Card(
-        child: Row(
-          children: [
-            Image.asset(
-              'assets/img/vocations/${vocation.image}',
-              height: 80,
-              colorBlendMode: BlendMode.color,
-              color: selected
-                  ? Colors.transparent
-                  : Colors.black.withValues(alpha: 0.8),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  StyledHeading(vocation.title),
-                  StyledText(vocation.description),
-                ],
+        color: selected ? AppColors.secondaryColor : Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Image.asset(
+                'assets/img/vocations/${vocation.image}',
+                height: 80,
+                colorBlendMode: BlendMode.color,
+                color: selected
+                    ? Colors.transparent
+                    : Colors.black.withValues(alpha: 0.8),
               ),
-            ),
-          ],
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    StyledHeading(vocation.title),
+                    StyledText(vocation.description),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
