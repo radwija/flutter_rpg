@@ -1,10 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/models/vocation.dart';
+import 'package:flutter_rpg/screens/create/vocation_card.dart';
+import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Create extends StatelessWidget {
+class Create extends StatefulWidget {
   const Create({super.key});
+
+  @override
+  State<Create> createState() => _CreateState();
+}
+
+class _CreateState extends State<Create> {
+  final _nameController = TextEditingController();
+  final _sloganController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _sloganController.dispose();
+    super.dispose();
+  }
+
+  Vocation selectedVocation = Vocation.junkie;
+
+  void updateVocation(Vocation vocation) {
+    setState(() {
+      selectedVocation = vocation;
+    });
+  }
+
+  void handleSubmit() {
+    if (_nameController.text.trim().isEmpty) {
+      print('Name musn\'t be emtpy');
+      return;
+    }
+
+    if (_sloganController.text.trim().isEmpty) {
+      print('Slogan musn\'t be emtpy');
+      return;
+    }
+
+    print(_nameController.text);
+    print(_sloganController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,41 +54,90 @@ class Create extends StatelessWidget {
         title: StyledTitle('Character Creation'),
         centerTitle: true,
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        child: Column(
-          children: [
-            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
-            StyledHeading('Welcome, new player.', textAlign: TextAlign.center),
-            StyledText(
-              'Create a name & slogan for your character.',
-              textAlign: TextAlign.center,
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          child: Column(
+            children: [
+              Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+              StyledHeading(
+                'Welcome, new player.',
+                textAlign: TextAlign.center,
+              ),
+              StyledText(
+                'Create a name & slogan for your character.',
+                textAlign: TextAlign.center,
+              ),
 
-            SizedBox(height: 30),
+              SizedBox(height: 30),
 
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.person_2),
-                label: StyledText('Character name'),
+              TextField(
+                textCapitalization: TextCapitalization.sentences,
+                controller: _nameController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person_2),
+                  label: StyledText('Character name'),
+                ),
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.headlineMedium,
+                ),
+                cursorColor: AppColors.textColor,
               ),
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.headlineMedium,
+              SizedBox(height: 10),
+              TextField(
+                textCapitalization: TextCapitalization.sentences,
+                controller: _sloganController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.chat),
+                  label: StyledText('Character slogan'),
+                ),
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.headlineMedium,
+                ),
+                cursorColor: AppColors.textColor,
               ),
-              cursorColor: AppColors.textColor,
-            ),
-            SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.chat),
-                label: StyledText('Character slogan'),
+              SizedBox(height: 30),
+
+              Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+              StyledHeading('Choose a Vocation.', textAlign: TextAlign.center),
+              StyledText(
+                'This determines your available skills.',
+                textAlign: TextAlign.center,
               ),
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.headlineMedium,
+
+              SizedBox(height: 30),
+
+              VocationCard(
+                vocation: Vocation.junkie,
+                onTap: updateVocation,
+                selected: selectedVocation == Vocation.junkie,
               ),
-              cursorColor: AppColors.textColor,
-            ),
-          ],
+              VocationCard(
+                vocation: Vocation.ninja,
+                onTap: updateVocation,
+                selected: selectedVocation == Vocation.ninja,
+              ),
+              VocationCard(
+                vocation: Vocation.raider,
+                onTap: updateVocation,
+                selected: selectedVocation == Vocation.raider,
+              ),
+              VocationCard(
+                vocation: Vocation.wizard,
+                onTap: updateVocation,
+                selected: selectedVocation == Vocation.wizard,
+              ),
+
+              SizedBox(height: 30),
+
+              Center(
+                child: StyledButton(
+                  onPressed: handleSubmit,
+                  child: StyledHeading('Create Character'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
