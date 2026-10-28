@@ -15,6 +15,7 @@ ThemeData primaryTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: AppColors.primaryColor,
     primary: AppColors.primaryColor,
+    brightness: Brightness.dark,
   ),
 
   scaffoldBackgroundColor: AppColors.secondaryAccent,
