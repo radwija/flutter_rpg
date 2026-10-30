@@ -64,4 +64,6 @@ ThemeData primaryTheme = ThemeData(
   ),
 
   dialogTheme: DialogThemeData(backgroundColor: AppColors.secondaryAccent),
+
+  snackBarTheme: SnackBarThemeData(closeIconColor: AppColors.textColor),
 );
